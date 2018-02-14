@@ -47,12 +47,12 @@ function execute(command, argument) {
 function myTweets() {
 
 
-    client.get('statuses/mentions_timeline', function(error, tweets, response) {
+    client.get('statuses/user_timeline', function(error, tweets, response) {
         if (error) throw error;
-        console.log(tweets); // The favorites. 
-        // console.log(response); // Raw response object. 
+        for (var i = 0; i < tweets.length; i++) {
+            console.log("(" + tweets[i].created_at + ") " + tweets[i].text); // The favorites. 
+        }
     });
-
 }
 
 
@@ -81,8 +81,6 @@ function movieThis(movie) {
 
     request("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
         if (!error && response.statusCode === 200) {
-            // Parse the body of the site and recover just the imdbRating
-            // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
             console.log("\nThe movie's title is: " + JSON.parse(body).Title);
             console.log("It came out in: " + JSON.parse(body).Year);
             console.log("IMDB rated it: " + JSON.parse(body).imdbRating);
@@ -91,7 +89,6 @@ function movieThis(movie) {
             console.log("And the language is: " + JSON.parse(body).Language);
             console.log("The actors: " + JSON.parse(body).Actors);
             console.log("And here's the plot: " + JSON.parse(body).Plot);
-
 
             function search(nameKey, myArray) {
                 for (var i = 0; i < myArray.length; i++) {
