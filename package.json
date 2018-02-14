@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/zrowe/liri-node-app#readme",
   "dependencies": {
-    "node-spotify-api": "^1.0.7"
+    "dotenv": "^5.0.0",
+    "node-spotify-api": "^1.0.7",
+    "request": "^2.83.0",
+    "twitter": "^1.7.1"
   }
 }
