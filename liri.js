@@ -46,7 +46,6 @@ function execute(command, argument) {
 // Show my last 20 tweets and when they were created.
 function myTweets() {
 
-
     client.get('statuses/user_timeline', function(error, tweets, response) {
         if (error) throw error;
         for (var i = 0; i < tweets.length; i++) {
@@ -59,15 +58,24 @@ function myTweets() {
 // spotify-this-song '<song name here>'
 // Show information about the song.
 function spotifyThisSong(song) {
+    console.log(song);
 
     // Artist(s)
     // The song's name
     // A preview link of the song from Spotify
     // The album that the song is from
+
+    // search: function({ type: 'artist OR album OR track', query: 'My search query', limit: 20 }, callback);
+
+
     spotify
-        .search({ type: 'track', query: song })
+        .search({ type: 'track', query: song, limit: 1 })
         .then(function(response) {
-            console.log(response);
+            console.log("Artist(s): " + response.tracks.items[0].album.artists);
+            console.log("Song's Name: " + response.tracks.items[0].name);
+            console.log("Preview Link: " + response.tracks.items[0].preview_url);
+            console.log("Album Name: " + response.tracks.items[0].album.name);
+
         })
         .catch(function(err) {
             console.log(err);
