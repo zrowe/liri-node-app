@@ -58,7 +58,6 @@ function myTweets() {
 // spotify-this-song '<song name here>'
 // Show information about the song.
 function spotifyThisSong(song) {
-    console.log(song);
 
     // Artist(s)
     // The song's name
@@ -71,15 +70,23 @@ function spotifyThisSong(song) {
     spotify
         .search({ type: 'track', query: song, limit: 1 })
         .then(function(response) {
-            console.log("Artist(s): " + response.tracks.items[0].album.artists);
+            console.log(showArtists(response.tracks.items[0].album.artists));
             console.log("Song's Name: " + response.tracks.items[0].name);
             console.log("Preview Link: " + response.tracks.items[0].preview_url);
             console.log("Album Name: " + response.tracks.items[0].album.name);
 
+            function showArtists(arr) {
+                var artists = "Artist(s): "
+                for (var i = 0; i < arr.length; i++) {
+                    artists = artists + arr[i].name + ", ";
+                }
+                return artists
+            }
         })
         .catch(function(err) {
             console.log(err);
         });
+
 }
 
 
@@ -87,18 +94,18 @@ function spotifyThisSong(song) {
 // Output movie information to your terminal/bash window:
 function movieThis(movie) {
 
-    request("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
+    request("https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
         if (!error && response.statusCode === 200) {
             console.log("\nThe movie's title is: " + JSON.parse(body).Title);
             console.log("It came out in: " + JSON.parse(body).Year);
             console.log("IMDB rated it: " + JSON.parse(body).imdbRating);
-            console.log("Rotten Tomatoes rated it: " + search("Rotten Tomatoes", JSON.parse(body).Ratings));
+            console.log("Rotten Tomatoes rated it: " + searchRatings("Rotten Tomatoes", JSON.parse(body).Ratings));
             console.log("It was produced in: " + JSON.parse(body).Country);
             console.log("And the language is: " + JSON.parse(body).Language);
             console.log("The actors: " + JSON.parse(body).Actors);
             console.log("And here's the plot: " + JSON.parse(body).Plot);
 
-            function search(nameKey, myArray) {
+            function searchRatings(nameKey, myArray) {
                 for (var i = 0; i < myArray.length; i++) {
                     if (myArray[i].Source === nameKey) {
                         return myArray[i].Value;
@@ -115,10 +122,8 @@ function movieThis(movie) {
 // Using the fs Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
 function doWhatItSays() {
     // It should run spotify-this-song for "I Want it That Way," as follows the text in random.txt.
-    // Feel free to change the text in that document to test out the feature for other commands.
 
     fs.readFile("random.txt", "utf8", function(error, data) {
-        // If the code experiences any errors it will log the error to the console.
         if (error) {
             return console.log(error);
         } else {
