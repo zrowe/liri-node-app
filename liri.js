@@ -48,6 +48,7 @@ function myTweets() {
 
     client.get('statuses/user_timeline', function(error, tweets, response) {
         if (error) throw error;
+        console.log("\n");
         for (var i = 0; i < tweets.length; i++) {
             console.log("(" + tweets[i].created_at + ") " + tweets[i].text); // The favorites. 
         }
@@ -64,12 +65,10 @@ function spotifyThisSong(song) {
     // A preview link of the song from Spotify
     // The album that the song is from
 
-    // search: function({ type: 'artist OR album OR track', query: 'My search query', limit: 20 }, callback);
-
-
     spotify
         .search({ type: 'track', query: song, limit: 1 })
         .then(function(response) {
+            console.log("\n");
             console.log(showArtists(response.tracks.items[0].album.artists));
             console.log("Song's Name: " + response.tracks.items[0].name);
             console.log("Preview Link: " + response.tracks.items[0].preview_url);
@@ -80,13 +79,12 @@ function spotifyThisSong(song) {
                 for (var i = 0; i < arr.length; i++) {
                     artists = artists + arr[i].name + ", ";
                 }
-                return artists
+                return artists.substr(0, artists.length-2);
             }
         })
         .catch(function(err) {
             console.log(err);
         });
-
 }
 
 
@@ -119,9 +117,8 @@ function movieThis(movie) {
 
 
 // node liri.js do-what-it-says
-// Using the fs Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
+// Take the text inside of random.txt and then use it to call one of LIRI's commands.
 function doWhatItSays() {
-    // It should run spotify-this-song for "I Want it That Way," as follows the text in random.txt.
 
     fs.readFile("random.txt", "utf8", function(error, data) {
         if (error) {
