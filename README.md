@@ -63,10 +63,10 @@ Options are:
         do-what-it-says
 ```
 
-**myTweets** displays the user's last 20 tweets
-**spotify-this-song** displays details from spotify's database of the song entered
-**movie-this** displays details from OMDB of the movie entered
-**do-what-it-says** reads from a command file (random.txt) instead of the command line.  
+* **myTweets** displays the user's last 20 tweets
+* **spotify-this-song** displays details from spotify's database of the song entered
+* **movie-this** displays details from OMDB of the movie entered
+* **do-what-it-says** reads from a command file (random.txt) instead of the command line.  
 
 
 ## Authors
@@ -82,4 +82,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 * UC Berkeley Coding BootCamp
 * Trilogy
-
