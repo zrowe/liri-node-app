@@ -8,7 +8,14 @@ To use, just clone down the repo, add your keys, and have fun.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+LIRI BOT was built and tested with the following nodeJS NPM packages:
+
+| NPM Package     | Version |
+| --------------- | ------- |
+| dotenv          | 5.0.0   |
+| node-spotify-api| 1.0.7   |
+| request         | 2.83.0  |
+| twitter         |1.7.1    |
 
 ```
 You will need access tokens for Twitter, OMDB, and Spotify
@@ -16,11 +23,12 @@ You will need access tokens for Twitter, OMDB, and Spotify
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
 
-Clone the repo to your system.
+1. Clone the repo to your system.
 
-Next, create a file named `.env`, add the following to it, replacing the values with your API keys (no quotes):
+1. run npm install
+
+1. create a file named `.env`, add the following to it, replacing the values with your API keys (no quotes):
 
 ```js
 # Spotify API keys
@@ -38,48 +46,7 @@ TWITTER_ACCESS_TOKEN_SECRET=your-twitter-access-token-secret
 ```
 
 
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
 End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 
 ## Authors
