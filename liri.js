@@ -13,6 +13,9 @@ var command = process.argv[2];
 var argument = process.argv[3];
 
 function execute(command, argument) {
+
+    banner(command, argument)
+
     switch (command) {
         case "my-tweets":
             myTweets();
@@ -47,9 +50,9 @@ function myTweets() {
 
     client.get('statuses/user_timeline', function(error, tweets, response) {
         if (error) throw error;
-        console.log("\n");
+        log("\n");
         for (var i = 0; i < tweets.length; i++) {
-            console.log("(" + tweets[i].created_at + ") " + tweets[i].text); // The favorites. 
+            log("(" + tweets[i].created_at + ") " + tweets[i].text); // The favorites. 
         }
     });
 }
@@ -63,13 +66,13 @@ function spotifyThisSong(song) {
 
         .then(function(response) {
             if (!(Array.isArray(response.tracks.items) && response.tracks.items.length)) {
-                console.log('Your song "' + song + '" was not found');
+                log('Your song "' + song + '" was not found');
             } else {
-                console.log(""); // for a blank line at start
-                console.log(showArtists(response.tracks.items[0].album.artists));
-                console.log("Song's Name: " + response.tracks.items[0].name);
-                console.log("Preview Link: " + response.tracks.items[0].preview_url);
-                console.log("Album Name: " + response.tracks.items[0].album.name);
+                log(""); // for a blank line at start
+                log(showArtists(response.tracks.items[0].album.artists));
+                log("Song's Name: " + response.tracks.items[0].name);
+                log("Preview Link: " + response.tracks.items[0].preview_url);
+                log("Album Name: " + response.tracks.items[0].album.name);
 
                 function showArtists(arr) {
                     var artists = "Artist(s): "
@@ -81,7 +84,7 @@ function spotifyThisSong(song) {
             }
         })
         .catch(function(err) {
-            console.log(err);
+            log(err);
         });
 }
 
@@ -96,14 +99,14 @@ function movieThis(movie) {
 
             var parsedBody = JSON.parse(body);
             if (parsedBody.Response === "True") {
-                console.log("\nThe movie's title is: " + parsedBody.Title);
-                console.log("It came out in: " + parsedBody.Year);
-                console.log("IMDB rated it: " + parsedBody.imdbRating);
-                console.log("Rotten Tomatoes rated it: " + searchRatings("Rotten Tomatoes", parsedBody.Ratings));
-                console.log("It was produced in: " + parsedBody.Country);
-                console.log("And the language is: " + parsedBody.Language);
-                console.log("The actors: " + parsedBody.Actors);
-                console.log("And here's the plot: " + parsedBody.Plot);
+                log("\nThe movie's title is: " + parsedBody.Title);
+                log("It came out in: " + parsedBody.Year);
+                log("IMDB rated it: " + parsedBody.imdbRating);
+                log("Rotten Tomatoes rated it: " + searchRatings("Rotten Tomatoes", parsedBody.Ratings));
+                log("It was produced in: " + parsedBody.Country);
+                log("And the language is: " + parsedBody.Language);
+                log("The actors: " + parsedBody.Actors);
+                log("And here's the plot: " + parsedBody.Plot);
 
                 function searchRatings(nameKey, myArray) {
                     for (var i = 0; i < myArray.length; i++) {
@@ -115,7 +118,7 @@ function movieThis(movie) {
                 }
             } else {
                 if (parsedBody.Response === "False") {
-                    console.log(parsedBody.Error);
+                    log(parsedBody.Error);
                 }
             }
         }
@@ -135,5 +138,24 @@ function doWhatItSays() {
         }
     });
 }
+
+
+// Write command banner to log file
+function banner(command, argument) {
+
+    if (!(command === undefined)) {
+        if (argument === undefined) { var argument = ""; }
+        var message = "\n* * * * * * * * * * * * * * " + command + " " + argument + " * * * * * * * * * * * * * *";
+        fs.appendFileSync("log.txt", message + "\n", "utf8");
+    }
+}
+
+
+// Write to the log file as well as the console
+function log(message) {
+    console.log(message);
+    fs.appendFileSync("log.txt", message + "\n", "utf8");
+}
+
 
 execute(command, argument)
