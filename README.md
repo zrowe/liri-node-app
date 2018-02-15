@@ -27,7 +27,6 @@ To obtain Twitter keys and secrets, goto [Create an Application](https://apps.tw
 
 ### Installing
 
-
 1. Clone the repo to your system.
 
 1. Run `npm install`
@@ -68,6 +67,7 @@ Options are:
 * **movie-this** displays details from OMDB of the movie entered
 * **do-what-it-says** reads from a command file (random.txt) instead of the command line.  
 
+Actions and results are logged to a file named `log.txt`.  It can be deleted if need be for pruning.
 
 ## Authors
 
