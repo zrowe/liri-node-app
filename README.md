@@ -71,7 +71,7 @@ Actions and results are logged to a file named `log.txt`.  It can be deleted if 
 
 ## Authors
 
-* **Paul Rowe** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Paul Rowe** - *Initial work* - [zrowe](https://github.com/zrowe)
 
 
 ## License
