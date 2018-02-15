@@ -17,18 +17,22 @@ LIRI BOT was built and tested with the following nodeJS NPM packages:
 | request         | 2.83.0  |
 | twitter         |1.7.1    |
 
-```
+
 You will need access tokens for Twitter, OMDB, and Spotify
-```
+
+To obtain Spotify ID and Secret, goto [My Apps](https://beta.developer.spotify.com/dashboard/applications). (You will need to log into Spotify first.
+
+To obtain Twitter keys and secrets, goto [Create an Application](https://apps.twitter.com/app/new).
+
 
 ### Installing
 
 
 1. Clone the repo to your system.
 
-1. run npm install
+1. Run `npm install`
 
-1. create a file named `.env`, add the following to it, replacing the values with your API keys (no quotes):
+1. Create a file named `.env`, add the following to it, replacing the values with your API keys (no quotes):
 
 ```js
 # Spotify API keys
@@ -46,7 +50,23 @@ TWITTER_ACCESS_TOKEN_SECRET=your-twitter-access-token-secret
 ```
 
 
-End with an example of getting some data out of the system or using it for a little demo
+### Usage
+
+Usage is `node liri.js <command> <optional argument>`
+
+```
+$ node liri.js
+Options are:
+        my-tweets
+        spotify-this-song <"name of a song">
+        movie-this <"name of a movie">
+        do-what-it-says
+```
+
+**myTweets** displays the user's last 20 tweets
+**spotify-this-song** displays details from spotify's database of the song entered
+**movie-this** displays details from OMDB of the movie entered
+**do-what-it-says** reads from a command file (random.txt) instead of the command line.  
 
 
 ## Authors

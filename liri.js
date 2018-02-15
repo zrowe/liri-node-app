@@ -37,7 +37,7 @@ function execute(command, argument) {
             doWhatItSays()
             break;
         default:
-            console.log("no such command, options are:\n\t`my-tweets`\n\t`spotify-this-song`\n\t`movie-this`\n\t`do-what-it-says`")
+            console.log('Options are:\n\tmy-tweets\n\tspotify-this-song <"name of a song">\n\tmovie-this <"name of a movie">\n\tdo-what-it-says')
     }
 }
 
